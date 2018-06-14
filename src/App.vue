@@ -1,30 +1,33 @@
 <template>
   <div id="app">
-    <!-- <predict-container></predict-container> -->
-    <div>
-      <!-- <predict-fieldset></predict-fieldset> -->
-      <label>Search for a name</label>
-      <input>
-      <button>&times;</button>
-      <ul>
-        <!-- <li v-for="item in items" :key="item.id">{{ item.name }}</li> -->
-        <predict-list v-for="item in items" :key="item.id">
+    <predict-container v-model="names">
+      <!-- <label>Search for a name</label> -->
+      <!-- <input> -->
+      <!-- <button></button> -->
+      <!-- <button>&times;</button> -->
+      <ul slot-scope="{ items }">
+        <predict-item v-for="item in items" :key="item.id">
           <li>{{ item.name }}</li>
-        </predict-list>
+        </predict-item>
       </ul>
-    </div>
+    </predict-container>
   </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
+import PredictContainer from './components/PredictContainer.vue'
+import PredictItem from './components/PredictItem.vue'
 
 export default {
   name: 'app',
-  components: {},
+  components: {
+    PredictContainer,
+    PredictItem
+  },
   data() {
     return {
-      items: [
+      isOpen: true,
+      names: [
         { id: 1, name: "Alex" },
         { id: 2, name: "Stacey" },
         { id: 3, name: "Levi" },
